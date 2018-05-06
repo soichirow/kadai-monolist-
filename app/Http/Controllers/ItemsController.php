@@ -1,11 +1,13 @@
     public function create()
     {
+        //フォームから送信される検索ワードを取得
         $keyword = request()->keyword;
         $items = [];
         if ($keyword) {
             $client = new \RakutenRws_Client();
             $client->setApplicationId(env('RAKUTEN_APPLICATION_ID'));
-
+            
+            //検索のオプションを設定
             $rws_response = $client->execute('IchibaItemSearch', [
                 'keyword' => $keyword,
                 'imageFlag' => 1,
@@ -27,4 +29,16 @@
             'keyword' => $keyword,
             'items' => $items,
         ]);
+    }
+    
+    
+    public function show($id)
+    {
+      $item = Item::find($id);
+      $want_users = $item->want_users;
+
+      return view('items.show', [
+          'item' => $item,
+          'want_users' => $want_users,
+      ]);
     }
