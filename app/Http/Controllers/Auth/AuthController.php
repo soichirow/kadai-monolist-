@@ -64,5 +64,8 @@ class AuthController extends Controller
     }
     
     //リダイレクト0506
-        protected $redirectTo = '/';
+    protected $redirectTo = '/';
+    
+    protected $loginPath = '/login';
+    
 }
