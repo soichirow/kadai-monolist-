@@ -23,4 +23,7 @@ Route::get('login', 'Auth\AuthController@getLogin')->name('login.get');
 Route::post('login', 'Auth\AuthController@postLogin')->name('login.post');
 Route::get('logout', 'Auth\AuthController@getLogout')->name('logout.get');
 
-
+//検索結果を表示する
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('items', 'ItemsController', ['only' => ['create']]);
+});
