@@ -13,6 +13,7 @@
                             @else
                                 <p class="item-title">{{ $item->name }}</p>
                             @endif
+
                             <div class="buttons text-center">
                                 @if (Auth::check())
                                     @include('items.want_button', ['item' => $item])
